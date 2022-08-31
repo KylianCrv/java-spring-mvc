@@ -7,7 +7,7 @@
         <title>Distributeur Spring mvc v2</title>
     </head>
     <body>
-        <h1>Crédit : ${balance}</h1>
+        <h2>Crédit : ${balance}</h2>
         <table>
             <caption>Liste des produits</caption>
             <tr>
@@ -17,12 +17,12 @@
                 <th>Prix</th>
             </tr>
 
-            <c:forEach var="product" items="${products }">
+            <c:forEach var="p" items="${products }">
                 <tr>
-                    <td>${product.id }</td>
-                    <td>${product.name }</td>
-                    <td>${product.price }</td>
-                    <td>${product.quantity }</td>
+                    <td>${p.id }</td>
+                    <td>${p.name }</td>
+                    <td>${p.quantity }</td>
+                    <td>${p.price }</td>
                 </tr>
             </c:forEach>
 
@@ -30,34 +30,30 @@
         </table>
 
         <form:form method="POST" action="/addBalance" modelAttribute="userForm">
-            <table>
-                <tr>
-                    <td><form:label path="balance">Crédit à ajouter : </form:label></td>
-                        <td>
-                        <form:input path="balance" type="number" />
-                        <form:errors style="color:red" path="balance" />
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="submit" value="Save" /></td>
-                </tr>
-            </table>
+            <fieldset>
+                <legend>Crédit à ajouter : </legend>
+                <p>
+                    <form:label path="balance">Montant</form:label>
+                    <form:input path="balance" type="number" step="0.01" />
+                    <form:errors style="color:red" path="balance" />
+                </p>
+                <input type="submit" value="Ajouter" />
+
+            </fieldset>
         </form:form>
 
 
-        <form:form method="POST" action="" modelAttribute="buyForm">
-            <table>
-                <tr>
-                    <td><form:label path="id">Produit à acheter : </form:label></td>
-                        <td>
-                        <form:input path="id" />
-                        <form:errors style="color:red" path="id" />
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="submit" value="Save" /></td>
-                </tr>
-            </table>
+        <form:form method="POST" action="/buyProduct" modelAttribute="buyForm">
+            <fieldset>
+                <legend>Acheter un produit : </legend>
+                <p>
+                    <form:label path="id">Numéro du produit</form:label>
+                    <form:input path="id" type="number" />
+                    <form:errors style="color:red" path="id" />
+                </p>
+                <input type="submit" value="Acheter" />
+
+            </fieldset>
         </form:form>
     </body>
 </html>
