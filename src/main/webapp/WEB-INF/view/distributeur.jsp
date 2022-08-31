@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri = "http://www.springframework.org/tags/form" prefix = "form"%>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -25,6 +26,38 @@
                 </tr>
             </c:forEach>
 
+
         </table>
+
+        <form:form method="POST" action="/addBalance" modelAttribute="userForm">
+            <table>
+                <tr>
+                    <td><form:label path="balance">Crédit à ajouter : </form:label></td>
+                        <td>
+                        <form:input path="balance" type="number" />
+                        <form:errors style="color:red" path="balance" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Save" /></td>
+                </tr>
+            </table>
+        </form:form>
+
+
+        <form:form method="POST" action="" modelAttribute="buyForm">
+            <table>
+                <tr>
+                    <td><form:label path="id">Produit à acheter : </form:label></td>
+                        <td>
+                        <form:input path="id" />
+                        <form:errors style="color:red" path="id" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Save" /></td>
+                </tr>
+            </table>
+        </form:form>
     </body>
 </html>
